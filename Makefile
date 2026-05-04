@@ -16,7 +16,7 @@ help:
 
 .PHONY: conda-env  ## 🐍 créé l'environnement conda python_indus_avancee, et le récréé s'il existe déjà
 conda-env:
-	conda create -yqf python=3.9 --name python_indus_avancee
+	conda create -yqf python=3.10 --name python_indus_avancee
 
 .PHONY: dependencies  ## ⏬ installe les dépendances de production
 dependences:
