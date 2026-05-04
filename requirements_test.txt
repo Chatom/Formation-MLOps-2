@@ -1,3 +1,5 @@
 behave
+flake8
+vulture
 pytest
 pytest-cov
