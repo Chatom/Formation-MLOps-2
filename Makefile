@@ -16,7 +16,7 @@ help:
 
 .PHONY: conda-env  ## 🐍 créé l'environnement conda python_indus_avancee, et le récréé s'il existe déjà
 conda-env:
-	conda create -yqf python=3.9 --name python_indus_avancee
+	conda create -yqf --name python_indus_avancee
 
 .PHONY: dependencies  ## ⏬ installe les dépendances de production
 dependences:
@@ -24,7 +24,7 @@ dependences:
 
 .PHONY: dependences-de-test  ## 🧪 installe toutes les dépendances, y compris celles de test
 dependences-de-test:
-	$(MAKE) dependences && pip install -r requirements_test.txt && pip install -e .
+	$(MAKE) dependencies && pip install -r requirements_test.txt && pip install -e .
 
 .PHONY: tests  ## ✅ lance tous les tests
 tests:

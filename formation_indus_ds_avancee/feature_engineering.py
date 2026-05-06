@@ -4,7 +4,7 @@ import pandas as pd
 
 
 def prepare_features_with_io(data_path: str, features_path: str, training_mode: bool = True) -> None:
-    data = pd.read_csv(data_path, sep=';')
+    data = pd.read_csv(data_path, sep=',')
 
     data = prepare_features(data, training_mode=training_mode)
 
@@ -19,15 +19,15 @@ def prepare_features(data: pd.DataFrame, training_mode: bool = True) -> pd.DataF
         data = data.drop(columns=[target], errors='ignore')
     data = create_date_features(data)
     data = data.sort_values(by='date')
-    features = ['Q_avg', 'Q_min', 'Q_max', 'Q_std']
-    fillna_with_previous_values(features, data)
-    features = ['Va1_avg', 'Va1_min', 'Va1_max', 'Va1_std']
+    # features = ['Q_avg', 'Q_min', 'Q_max', 'Q_std']
+    # fillna_with_previous_values(features, data)
+    features = ['P_avg','Ws_avg','Va_avg','Ot_avg','Ya_avg','Wa_avg']
     fillna_with_mean(features, data)
-    features = ['Va2_avg', 'Va2_min', 'Va2_max', 'Va2_std']
-    fillna_with_median(features, data)
-    features = ['Rs_avg', 'Rs_min', 'Rs_max', 'Rs_std', 'Rm_avg', 'Rm_min', 'Rm_max', 'Rm_std']
-    fillna_with_mean_of_last_values(features, data, 30, 1)
-    data = data.drop(columns=['Wind_turbine_name', 'Ba_min', 'Ba_max', 'Ba_std', 'Date_time', 'date'])
+    # features = ['Va2_avg', 'Va2_min', 'Va2_max', 'Va2_std']
+    # fillna_with_median(features, data)
+    # features = ['Rs_avg', 'Rs_min', 'Rs_max', 'Rs_std', 'Rm_avg', 'Rm_min', 'Rm_max', 'Rm_std']
+    # fillna_with_mean_of_last_values(features, data, 30, 1)
+    data = data.drop(columns=['Wind_turbine_name', 'Date_time', 'date'])
     data = data.fillna(0)
     return data
 
