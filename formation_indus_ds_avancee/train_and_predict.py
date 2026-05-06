@@ -4,6 +4,7 @@ import time
 import joblib
 import mlflow
 import pandas as pd
+import shap
 from sklearn.ensemble import RandomForestRegressor
 
 
@@ -45,3 +46,19 @@ def predict(features: pd.DataFrame, model_path: str) -> pd.DataFrame:
     model = joblib.load(model_path)
     features['predictions'] = model.predict(features)
     return features
+
+
+def predict_with_shap(features: pd.DataFrame, model_path: str):
+    model = joblib.load(model_path)    
+    prediction = model.predict(features)
+
+    explainer = shap.TreeExplainer(model)
+    shap_values = explainer.shap_values(features)
+
+    return {
+        "predictions": prediction.tolist(),
+        "explanations": [
+            dict(zip(features.columns, row))
+            for row in shap_values
+        ]
+    }

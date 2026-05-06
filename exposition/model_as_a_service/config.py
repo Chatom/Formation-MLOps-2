@@ -14,6 +14,11 @@ GENERATED_DATA_PATH = os.path.join(DATA_FOLDER,
 
 FEATURES_PATH = os.path.join(DATA_FOLDER, 'prepared_features.parquet')
 
+# MODEL_REGISTRY_FOLDER = os.path.join(PROJECT_FOLDER, 'models')
+# MODEL_PATH = os.path.join(MODEL_REGISTRY_FOLDER,
+#                           '20260506-083028.joblib')  # To change when needed
+# print("MODEL_PATH:", MODEL_PATH)
+
 MODEL_REGISTRY_FOLDER = '.'
 MODEL_PATH = os.path.join(MODEL_REGISTRY_FOLDER,
                           '20200616-140746.joblib')  # To change when needed
